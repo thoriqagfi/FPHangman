@@ -1,6 +1,9 @@
-## Getting Started
+# Hangman's Final Project
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Hangman is a Final Project of Object Oriented Programming Lectures. Person in charge :
+- Thariq Agfi Hermawan
+- Urdhanaka Aptanagi
+- Anas Azhar
 
 ## Folder Structure
 
@@ -12,6 +15,12 @@ The workspace contains two folders by default, where:
 Meanwhile, the compiled output files will be generated in the `bin` folder by default.
 
 > If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+> If you want to run this program on Visual Studio Code, open the `.vscode/launch.json` file and configure the javafx modules `vmArgs: [your javafx lib path]`
+
+## Technology Stack
+
+- Java : `java 18.0.2`
+- JavaFX : `javafx-sdk-19`
 
 ## Dependency Management
 
