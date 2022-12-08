@@ -2,9 +2,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class StartGameController {
+    Image imageLife0 = new Image(getClass().getResourceAsStream("Image/0.png"));
+    Image imageLife1 = new Image(getClass().getResourceAsStream("Image/1.png"));
+    Image imageLife2 = new Image(getClass().getResourceAsStream("Image/2.png"));
+    Image imageLife3 = new Image(getClass().getResourceAsStream("Image/3.png"));
+    Image imageLife4 = new Image(getClass().getResourceAsStream("Image/4.png"));
+    Image imageLife5 = new Image(getClass().getResourceAsStream("Image/5.png"));
+    Image imageLife6 = new Image(getClass().getResourceAsStream("Image/6.png"));
 
     @FXML
     private Label hint;
