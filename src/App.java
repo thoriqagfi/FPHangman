@@ -8,7 +8,7 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("StartGame.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
             Scene scene = new Scene(root);
 
             primaryStage.setTitle("Hangman");
@@ -21,6 +21,5 @@ public class App extends Application {
     }
     public static void main(String[] args) throws Exception {
         launch(args);
-        System.out.println("Hello, World!");
     }
 }
