@@ -125,6 +125,7 @@ public class StartGameController {
     @FXML
     void CheckInput(ActionEvent event) {
         String inputText = input.getText();
+        inputText = inputText.toUpperCase();
         if(word.contains(inputText)) {
             int index = 0;
             for(int i = 0; i < word.length(); i++) {
