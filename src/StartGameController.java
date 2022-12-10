@@ -50,7 +50,40 @@ public class StartGameController {
     private TextField tf8;
 
     String[] data = {
-        "MEXICO COUNTRY"
+        "MEXICO COUNTRY",
+        "CANADA COUNTRY",
+        "DOCTOR PROFESSION",
+        "FOOTBALL SPORT",
+        "TEACHER PROFESSION",
+        "LEOPARD ANIMAL",
+        "BICYCLE TRANSPORT",
+        "SALMON FISH",
+        "SPARROW BIRD",
+        "PARROTS BIRD",
+        "EAGLE BIRD",
+        "TRAIN TRANSPORT",
+        "SHIP TRANSPORT",
+        "ENGINEER PROFESSION",
+        "BANKER PROFESSION",
+        "CRICKET SPORT",
+        "BASKETBALL SPORT",
+        "HOCKEY SPORT",
+        "TENNIS SPORT",
+        "SWIMMING sport",
+        "CAR TRANSPORT",
+        "BUS TRANSPORT",
+        "PLANE TRANSPORT",
+        "BICYCLE TRANSPORT",
+        "INDONESIA COUNTRY",
+        "AUSTRALIA COUNTRY",
+        "JAPAN COUNTRY",
+        "CHINA COUNTRY",
+        "THAILAND COUNTRY",
+        "ENGLAND COUNTRY",
+        "FRANCE COUNTRY",
+        "GERMANY COUNTRY",
+        "ITALY COUNTRY",
+        "SPAIN COUNTRY",
     };
 
     int random = new Random().nextInt(data.length);
