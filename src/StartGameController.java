@@ -94,6 +94,34 @@ public class StartGameController {
     int life = 6;
     int letterSize = word.length();
 
+    public void initialize(){
+        setHint();
+    }
+
+    public void setHint(){
+        hint.setText(hintWord);
+        letter_count.setText(letterSize + " Letters");
+
+        if(letterSize == 7){
+            tf8.setVisible(false);
+        }
+        if(letterSize == 6){
+            tf7.setVisible(false);
+            tf8.setVisible(false);
+        }
+        if(letterSize == 5){
+            tf6.setVisible(false);
+            tf7.setVisible(false);
+            tf8.setVisible(false);
+        }
+        if(letterSize == 4){
+            tf5.setVisible(false);
+            tf6.setVisible(false);
+            tf7.setVisible(false);
+            tf8.setVisible(false);
+        }
+    }
+
     @FXML
     void CheckInput(ActionEvent event) {
         String inputText = input.getText();
