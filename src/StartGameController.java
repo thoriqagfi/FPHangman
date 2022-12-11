@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,15 +22,11 @@ public class StartGameController {
     Image imageLife6 = new Image(getClass().getResourceAsStream("Image/6.png"));
 
     @FXML
-    private Label hint;
-    @FXML
-    private Label hint_label;
+    private TextField hint;
     @FXML
     private ImageView img;
     @FXML
     private TextField input;
-    @FXML
-    private Label letter_count;
     @FXML
     private TextField tf1;
     @FXML
@@ -48,6 +43,10 @@ public class StartGameController {
     private TextField tf7;
     @FXML
     private TextField tf8;
+    @FXML
+    private TextField tf9;
+    @FXML
+    private TextField tf10;
 
     String[] data = {
         "MEXICO COUNTRY",
@@ -100,27 +99,17 @@ public class StartGameController {
     }
 
     public void setHint(){
-        hint.setText(hintWord);
-        letter_count.setText(letterSize + " Letters");
+        String hintText = hintWord + ", " + String.valueOf(letterSize) + " letters";
+        hint.setText(hintText);
 
-        if(letterSize == 7){
-            tf8.setVisible(false);
+        for (int i = 0; i < 10; i++) {
+            if (i < letterSize) {
+                setLetter(i + 1, "___");
+            } else {
+                setLetter(i + 1, " ");
+            }
         }
-        if(letterSize == 6){
-            tf7.setVisible(false);
-            tf8.setVisible(false);
-        }
-        if(letterSize == 5){
-            tf6.setVisible(false);
-            tf7.setVisible(false);
-            tf8.setVisible(false);
-        }
-        if(letterSize == 4){
-            tf5.setVisible(false);
-            tf6.setVisible(false);
-            tf7.setVisible(false);
-            tf8.setVisible(false);
-        }
+
     }
 
     @FXML
@@ -142,6 +131,7 @@ public class StartGameController {
         }
     }
 
+    @FXML
     void HintLetter(ActionEvent event) {
         int index = 0;
             for(int i = 0; i < letterSize; i++) {
@@ -156,26 +146,28 @@ public class StartGameController {
     }
 
     public void setLetter(int index, String inputText) {
-        if(index == 0) tf1.setText(inputText);
-        else if(index == 1) tf2.setText(inputText);
-        else if(index == 2) tf3.setText(inputText);
-        else if(index == 3) tf4.setText(inputText);
-        else if(index == 4) tf5.setText(inputText);
-        else if(index == 5) tf6.setText(inputText);
-        else if(index == 6) tf7.setText(inputText);
-        else if(index == 7) tf8.setText(inputText);
+        if (index == 1) tf1.setText(inputText);
+        else if (index == 2) tf2.setText(inputText);
+        else if (index == 3) tf3.setText(inputText);
+        else if (index == 4) tf4.setText(inputText);
+        else if (index == 5) tf5.setText(inputText);
+        else if (index == 6) tf6.setText(inputText);
+        else if (index == 7) tf7.setText(inputText);
+        else if (index == 8) tf8.setText(inputText);
+        else if (index == 9) tf9.setText(inputText);
+        else if (index == 10) tf10.setText(inputText);
     }
 
     public void setImage() {
-        if(life == 6) img.setImage(imageLife1);
-        else if(life == 5) img.setImage(imageLife2);
-        else if(life == 4) img.setImage(imageLife3);
-        else if(life == 3) img.setImage(imageLife4);
-        else if(life == 2) img.setImage(imageLife5);
-        else if(life == 1) img.setImage(imageLife6);
-        else if(life == 0) {
+        if (life == 6) img.setImage(imageLife6);
+        else if (life == 5) img.setImage(imageLife5);
+        else if (life == 4) img.setImage(imageLife4);
+        else if (life == 3) img.setImage(imageLife3);
+        else if (life == 2) img.setImage(imageLife2);
+        else if (life == 1) img.setImage(imageLife1);
+        else if (life == 0) {
             img.setImage(imageLife0);
-            hint_label.setText("The word is: " + word);
+            hint.setText("The word is: " + word);
         }
         life--;
     }
