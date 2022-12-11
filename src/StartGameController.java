@@ -66,7 +66,7 @@ public class StartGameController {
         "ENGINEER PROFESSION",
         "BANKER PROFESSION",
         "CRICKET SPORT",
-        "BASKETBALL SPORT",
+        // "BASKETBALL SPORT",
         "HOCKEY SPORT",
         "TENNIS SPORT",
         "SWIMMING sport",
@@ -74,8 +74,8 @@ public class StartGameController {
         "BUS TRANSPORT",
         "PLANE TRANSPORT",
         "BICYCLE TRANSPORT",
-        "INDONESIA COUNTRY",
-        "AUSTRALIA COUNTRY",
+        // "INDONESIA COUNTRY",
+        // "AUSTRALIA COUNTRY",
         "JAPAN COUNTRY",
         "CHINA COUNTRY",
         "THAILAND COUNTRY",
@@ -116,6 +116,13 @@ public class StartGameController {
             tf8.setVisible(false);
         }
         if(letterSize == 4){
+            tf5.setVisible(false);
+            tf6.setVisible(false);
+            tf7.setVisible(false);
+            tf8.setVisible(false);
+        }
+        if(letterSize == 3){
+            tf4.setVisible(false);
             tf5.setVisible(false);
             tf6.setVisible(false);
             tf7.setVisible(false);
