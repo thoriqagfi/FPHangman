@@ -13,13 +13,13 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class StartGameController {
-    Image imageLife0 = new Image(getClass().getResourceAsStream("Image/0.png"));
-    Image imageLife1 = new Image(getClass().getResourceAsStream("Image/1.png"));
-    Image imageLife2 = new Image(getClass().getResourceAsStream("Image/2.png"));
+    Image imageLife0 = new Image(getClass().getResourceAsStream("Image/end.png"));
+    Image imageLife1 = new Image(getClass().getResourceAsStream("Image/5.png"));
+    Image imageLife2 = new Image(getClass().getResourceAsStream("Image/4.png"));
     Image imageLife3 = new Image(getClass().getResourceAsStream("Image/3.png"));
-    Image imageLife4 = new Image(getClass().getResourceAsStream("Image/4.png"));
-    Image imageLife5 = new Image(getClass().getResourceAsStream("Image/5.png"));
-    Image imageLife6 = new Image(getClass().getResourceAsStream("Image/6.png"));
+    Image imageLife4 = new Image(getClass().getResourceAsStream("Image/2.png"));
+    Image imageLife5 = new Image(getClass().getResourceAsStream("Image/1.png"));
+    Image imageLife6 = new Image(getClass().getResourceAsStream("Image/0.png"));
 
     @FXML
     private TextField hint;
@@ -109,7 +109,6 @@ public class StartGameController {
                 setLetter(i + 1, " ");
             }
         }
-
     }
 
     @FXML
