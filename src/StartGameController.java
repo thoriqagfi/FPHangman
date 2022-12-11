@@ -93,6 +93,7 @@ public class StartGameController {
     String hintWord = split[1];
     int life = 6;
     int letterSize = word.length();
+    boolean[] isAnswered = new boolean[letterSize];
 
     public void initialize(){
         setHint();
@@ -128,16 +129,30 @@ public class StartGameController {
         inputText = inputText.toUpperCase();
         if(word.contains(inputText)) {
             int index = 0;
-            for(int i = 0; i < word.length(); i++) {
+            for(int i = 0; i < letterSize; i++) {
                 char c = word.charAt(i);
                 if(String.valueOf(c).equals(inputText)) {
                     setLetter(index, Character.toString(c));
+                    isAnswered[index] = true;
                 }
                 index++;
             }
         } else {
             setImage();
         }
+    }
+
+    void HintLetter(ActionEvent event) {
+        int index = 0;
+            for(int i = 0; i < letterSize; i++) {
+                char c = word.charAt(i);
+                if(!isAnswered[index]) {
+                    setLetter(index, Character.toString(c));
+                    isAnswered[index] = true;
+                }
+                index++;
+            }
+
     }
 
     public void setLetter(int index, String inputText) {
