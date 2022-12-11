@@ -14,12 +14,12 @@ import javafx.stage.Stage;
 
 public class StartGameController {
     Image imageLife0 = new Image(getClass().getResourceAsStream("Image/end.png"));
-    Image imageLife1 = new Image(getClass().getResourceAsStream("Image/5.png"));
-    Image imageLife2 = new Image(getClass().getResourceAsStream("Image/4.png"));
+    Image imageLife1 = new Image(getClass().getResourceAsStream("Image/1.png"));
+    Image imageLife2 = new Image(getClass().getResourceAsStream("Image/2.png"));
     Image imageLife3 = new Image(getClass().getResourceAsStream("Image/3.png"));
-    Image imageLife4 = new Image(getClass().getResourceAsStream("Image/2.png"));
-    Image imageLife5 = new Image(getClass().getResourceAsStream("Image/1.png"));
-    Image imageLife6 = new Image(getClass().getResourceAsStream("Image/0.png"));
+    Image imageLife4 = new Image(getClass().getResourceAsStream("Image/4.png"));
+    Image imageLife5 = new Image(getClass().getResourceAsStream("Image/5.png"));
+    Image imageLife6 = new Image(getClass().getResourceAsStream("Image/6.png"));
 
     @FXML
     private TextField hint;
@@ -116,32 +116,28 @@ public class StartGameController {
         String inputText = input.getText();
         inputText = inputText.toUpperCase();
         if(word.contains(inputText)) {
-            int index = 0;
             for(int i = 0; i < letterSize; i++) {
                 char c = word.charAt(i);
                 if(String.valueOf(c).equals(inputText)) {
-                    setLetter(index, Character.toString(c));
-                    isAnswered[index] = true;
+                    setLetter(i + 1, Character.toString(c));
+                    isAnswered[i] = true;
                 }
-                index++;
             }
         } else {
+            life--;
             setImage();
         }
     }
 
     @FXML
     void HintLetter(ActionEvent event) {
-        int index = 0;
-            for(int i = 0; i < letterSize; i++) {
-                char c = word.charAt(i);
-                if(!isAnswered[index]) {
-                    setLetter(index, Character.toString(c));
-                    isAnswered[index] = true;
-                }
-                index++;
+        for(int i = 0; i < letterSize; i++) {
+            char c = word.charAt(i);
+            if(!isAnswered[i]) {
+                setLetter(i + 1, Character.toString(c));
+                isAnswered[i] = true;
             }
-
+        }
     }
 
     public void setLetter(int index, String inputText) {
@@ -168,7 +164,6 @@ public class StartGameController {
             img.setImage(imageLife0);
             hint.setText("The word is: " + word);
         }
-        life--;
     }
 
     @FXML
