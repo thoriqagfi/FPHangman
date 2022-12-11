@@ -92,7 +92,7 @@ public class StartGameController {
     String hintWord = split[1];
     int life = 6;
     int letterSize = word.length();
-    boolean[] isAnswered = new boolean[letterSize];
+    boolean[] isAnswered = new boolean[11];
 
     public void initialize(){
         setHint();
@@ -120,7 +120,7 @@ public class StartGameController {
                 char c = word.charAt(i);
                 if(String.valueOf(c).equals(inputText)) {
                     setLetter(i + 1, Character.toString(c));
-                    isAnswered[i] = true;
+                    isAnswered[i + 1] = true;
                 }
             }
         } else {
@@ -131,11 +131,17 @@ public class StartGameController {
 
     @FXML
     void HintLetter(ActionEvent event) {
-        for(int i = 0; i < letterSize; i++) {
-            char c = word.charAt(i);
+        for(int i = 1; i <= letterSize; i++) {
             if(!isAnswered[i]) {
-                setLetter(i + 1, Character.toString(c));
-                isAnswered[i] = true;
+                char hint_letter = word.charAt(i-1);
+                for(int j = 0; j < letterSize; j++) {
+                    char c = word.charAt(j);
+                    if(hint_letter == c) {
+                    setLetter(j + 1, Character.toString(c));
+                    isAnswered[j + 1] = true;
+                    }
+                }
+            break;
             }
         }
     }
