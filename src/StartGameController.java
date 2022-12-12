@@ -24,6 +24,8 @@ public class StartGameController {
     Image imageLife6 = new Image(getClass().getResourceAsStream("Image/6.png"));
 
     @FXML
+    private TextField textScorTextField;
+    @FXML
     private TextField hint;
     @FXML
     private ImageView img;
