@@ -40,7 +40,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="texrScoreTextField" alignment="CENTER" style="-fx-background-color: rgba(0,0,0,0);" text="Score here" GridPane.columnIndex="1">
+                  <TextField fx:id="textScore" alignment="CENTER" editable="false" style="-fx-background-color: rgba(0,0,0,0);" text="Score here" GridPane.columnIndex="1">
                      <font>
                         <Font size="15.0" />
                      </font>

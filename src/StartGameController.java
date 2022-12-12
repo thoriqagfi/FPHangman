@@ -24,7 +24,7 @@ public class StartGameController {
     Image imageLife6 = new Image(getClass().getResourceAsStream("Image/6.png"));
 
     @FXML
-    private TextField textScorTextField;
+    private TextField textScore;
     @FXML
     private TextField hint;
     @FXML
@@ -100,15 +100,16 @@ public class StartGameController {
     int life = 6;
     int letterSize = word.length();
     boolean[] isAnswered = new boolean[11];
+    int score = 0;
 
     public void initialize(){
         setHint();
+        setScore();
     }
 
     public void setHint(){
         String hintText = hintWord + ", " + String.valueOf(letterSize) + " letters";
         hint.setText(hintText);
-
         for (int i = 0; i < 10; i++) {
             if (i < letterSize) {
                 setLetter(i + 1, "___");
@@ -116,6 +117,11 @@ public class StartGameController {
                 setLetter(i + 1, " ");
             }
         }
+    }
+
+    public void setScore() {
+        String showScore = "Score: " + String.valueOf(score);
+        textScore.setText(showScore);
     }
 
     @FXML
@@ -195,5 +201,4 @@ public class StartGameController {
         window.setScene(new Scene(root, 800, 650));
         window.show();
     }
-
 }
