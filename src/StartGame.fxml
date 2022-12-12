@@ -88,7 +88,7 @@
                   <TextField fx:id="input" alignment="CENTER" layoutX="400.0" layoutY="-1.0" prefHeight="40.0" prefWidth="40.0" />
                   <Button focusTraversable="false" layoutX="328.0" layoutY="47.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="184.0" text="RESET" />
                   <Button focusTraversable="false" layoutX="457.0" mnemonicParsing="false" onAction="#CheckInput" prefHeight="37.0" prefWidth="63.0" text="CHECK" />
-                  <Button focusTraversable="false" layoutX="533.0" mnemonicParsing="false" onAction="#HintLetter" prefHeight="37.0" prefWidth="63.0" text="HINT" />
+                  <Button fx:id="buttonHint" focusTraversable="false" layoutX="533.0" mnemonicParsing="false" onAction="#HintLetter" onMouseClicked="#hideHintLetter" prefHeight="37.0" prefWidth="63.0" text="HINT" />
                </children>
             </Pane>
          </children>

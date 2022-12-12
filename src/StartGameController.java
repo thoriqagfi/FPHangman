@@ -7,9 +7,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class StartGameController {
@@ -47,6 +49,8 @@ public class StartGameController {
     private TextField tf9;
     @FXML
     private TextField tf10;
+    @FXML
+    private Button buttonHint;
 
     String[] data = {
         "MEXICO COUNTRY",
@@ -85,6 +89,7 @@ public class StartGameController {
         "SPAIN COUNTRY",
     };
 
+    int countHint = 0;
     int random = new Random().nextInt(data.length);
     String wordHint = data[random];
     String[] split = wordHint.split(" ", 2);
@@ -131,6 +136,7 @@ public class StartGameController {
 
     @FXML
     void HintLetter(ActionEvent event) {
+        countHint++;
         for(int i = 1; i <= letterSize; i++) {
             if(!isAnswered[i]) {
                 char hint_letter = word.charAt(i-1);
@@ -143,6 +149,13 @@ public class StartGameController {
                 }
             break;
             }
+        }
+    }
+
+    @FXML
+    void hideHintLetter(MouseEvent event) {
+        if (countHint == 3) {
+            buttonHint.setVisible(false);
         }
     }
 
