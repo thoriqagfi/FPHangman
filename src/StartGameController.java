@@ -53,6 +53,8 @@ public class StartGameController {
     private TextField tf10;
     @FXML
     private Button buttonHint;
+    
+    private TextField[] wordFields;
 
     String[] data = {
         "MEXICO COUNTRY",
@@ -102,9 +104,18 @@ public class StartGameController {
     boolean[] isAnswered = new boolean[11];
     int score = 0;
 
-    public void initialize(){
+    public void initialize() {
+        initializeTextFieldArray();
         setHint();
         setScore();
+    }
+
+    void initializeTextFieldArray() {
+        wordFields = new TextField[] {
+            tf1, tf2, tf3, tf4,
+            tf5, tf6, tf7, tf8,
+            tf9, tf10
+        };
     }
 
     public void setHint(){
@@ -112,9 +123,9 @@ public class StartGameController {
         hint.setText(hintText);
         for (int i = 0; i < 10; i++) {
             if (i < letterSize) {
-                setLetter(i + 1, "___");
+                wordFields[i].setText("___");
             } else {
-                setLetter(i + 1, " ");
+                wordFields[i].setText("");
             }
         }
     }
@@ -132,6 +143,7 @@ public class StartGameController {
             for(int i = 0; i < letterSize; i++) {
                 char c = word.charAt(i);
                 if(String.valueOf(c).equals(inputText)) {
+                    wordFields[i + 1].setText(inputText);
                     setLetter(i + 1, Character.toString(c));
                     isAnswered[i + 1] = true;
                 }
