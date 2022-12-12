@@ -104,6 +104,7 @@ public class StartGameController {
 
     public void initialize(){
         setHint();
+        setScore();
     }
 
     public void setHint(){
@@ -200,5 +201,4 @@ public class StartGameController {
         window.setScene(new Scene(root, 800, 650));
         window.show();
     }
-
 }
