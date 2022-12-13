@@ -271,6 +271,15 @@ public class StartGameController {
     }
 
     @FXML
+    void backToMainMenu(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        Stage window = (Stage)(((Node) event.getSource()).getScene().getWindow());
+        window.setTitle("Hangman");
+        window.setScene(new Scene(root, 800, 650));
+        window.show();
+    }
+    
+    @FXML
     void changeScene(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("StartGame.fxml"));
         Stage window = (Stage)(((Node) event.getSource()).getScene().getWindow());
