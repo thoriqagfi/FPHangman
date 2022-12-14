@@ -122,10 +122,12 @@ public class StartGameController {
 
     int countHint, life, letterSize, score;
     int random = new Random().nextInt(data.size());
-    
-    String wordHint, word, hintWord;
-    String[] split = new String[2];
-
+    String wordHint = data.get(random);
+    String[] split = wordHint.split(" ", 2);
+    String word = split[0];
+    String hintWord = split[1];
+    int life = 6;
+    int letterSize = word.length();
     boolean[] isAnswered = new boolean[11];
 
     public void initialize() {
@@ -200,11 +202,9 @@ public class StartGameController {
     }
 
     void nextWord() {
-        // empty the input text field
-        input.setText("");
-        
-        // make buttonGetNewWord visible again
-        buttonGetNewWord.setVisible(true);
+        // delete old word to another arraylist
+        dataAnswered.add(data.get(random));
+        data.remove(random);
 
         // get a new word
         random = new Random().nextInt(data.size());
@@ -212,6 +212,9 @@ public class StartGameController {
         split = wordHint.split(" ", 2);
         word = split[0];
         hintWord = split[1];
+        letterSize = word.length();
+        score++;
+        Arrays.fill(isAnswered, false);
 
         // reset hint count and make hint button visible
         countHint = 0;
@@ -223,7 +226,7 @@ public class StartGameController {
         
         // initialize all word text field
         initializeWordTextField();
-        setHint();
+
     }
     
     public void setHint(){
