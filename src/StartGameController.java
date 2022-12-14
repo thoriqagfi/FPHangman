@@ -223,7 +223,6 @@ public class StartGameController {
         
         // initialize all word text field
         initializeWordTextField();
-
     }
     
     public void setHint(){
@@ -261,6 +260,7 @@ public class StartGameController {
                 setScore();
                 hint.setText("You are correct!");
                 finishedState();
+                buttonHint.setVisible(false);
             }
         } else {
             life--;
@@ -271,6 +271,9 @@ public class StartGameController {
                 gameOver();
             }
         }
+
+        input.selectAll();
+        input.requestFocus();
         
         input.setText("");
     }
@@ -313,6 +316,10 @@ public class StartGameController {
 
             break;
             }
+        }
+        if (isFinished(word.length())) {
+            finishedState();
+            buttonHint.setVisible(false);
         }
     }
 
