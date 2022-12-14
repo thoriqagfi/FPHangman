@@ -93,13 +93,13 @@
             </HBox>
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
-                  <TextField editable="false" focusTraversable="false" layoutX="301.0" prefHeight="37.0" prefWidth="99.0" style="-fx-background-color: rgba(0,0,0,0);" text="Enter a letter:">
+                  <TextField editable="false" focusTraversable="false" layoutX="301.0" mouseTransparent="true" prefHeight="37.0" prefWidth="99.0" style="-fx-background-color: rgba(0,0,0,0);" text="Enter a letter:">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
                   <TextField fx:id="input" alignment="CENTER" layoutX="400.0" layoutY="-1.0" prefHeight="40.0" prefWidth="40.0" />
-                  <Button focusTraversable="false" layoutX="328.0" layoutY="47.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="184.0" text="RESET" />
+                  <Button fx:id="buttonGetNewWord" focusTraversable="false" layoutX="328.0" layoutY="47.0" mnemonicParsing="false" onAction="#getNewWord" prefHeight="37.0" prefWidth="184.0" text="GET A NEW WORD" />
                   <Button fx:id="buttonCheck" focusTraversable="false" layoutX="457.0" mnemonicParsing="false" onAction="#CheckInput" prefHeight="37.0" prefWidth="63.0" text="CHECK" />
                   <Button fx:id="buttonHint" focusTraversable="false" layoutX="533.0" mnemonicParsing="false" onAction="#HintLetter" onMouseClicked="#hideHintLetter" prefHeight="37.0" prefWidth="63.0" text="HINT" />
                </children>

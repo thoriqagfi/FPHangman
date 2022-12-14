@@ -1,4 +1,8 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -58,8 +62,22 @@ public class StartGameController {
     private TextField tf10;
     @FXML
     private Button buttonHint;
+    @FXML
+    private Button buttonGetNewWord;
     
     private TextField[] wordFields;
+    
+    ArrayList<Image> imageLife = new ArrayList<Image>(
+        Arrays.asList(
+            imageLife0,
+            imageLife1,
+            imageLife2,
+            imageLife3,
+            imageLife4,
+            imageLife5,
+            imageLife6
+        )
+    );
 
     ArrayList<String> dataAnswered = new ArrayList<String>();
 
@@ -102,18 +120,16 @@ public class StartGameController {
         )
     );
 
-    int countHint = 0;
+    int countHint, life, letterSize, score;
     int random = new Random().nextInt(data.size());
-    String wordHint = data.get(random);
-    String[] split = wordHint.split(" ", 2);
-    String word = split[0];
-    String hintWord = split[1];
-    int life = 6;
-    int letterSize = word.length();
+    
+    String wordHint, word, hintWord;
+    String[] split = new String[2];
+
     boolean[] isAnswered = new boolean[11];
-    int score = 0;
 
     public void initialize() {
+        initializeVariable();
         initializeTextFieldArray();
         initializeWordTextField();
         setHint();
@@ -128,11 +144,43 @@ public class StartGameController {
         };
     }
     
+    void initializeVariable() {
+        // fetch new word
+        random = new Random().nextInt(data.size());
+        wordHint = data.get(random);
+        split = wordHint.split(" ", 2);
+        word = split[0];
+        hintWord = split[1];
+
+        // life
+        life = 6;
+
+        // score
+        score = 0;
+        
+        // letter length
+        letterSize = word.length();
+
+        // isAnswered array
+        isAnswered = new boolean[11];
+
+        // hint count
+        countHint = 0;
+    }
+
+    public void initializeWordTextField() {
+        for (int i = 0; i < 10; i++) {
+            if (i < letterSize) {
+                wordFields[i].setText("___");
+            } else {
+                wordFields[i].setText("");
+            }
+        }
+    }
+
     public boolean isFinished(int wordLength) {
         for (int i = 0; i < wordLength; i++) {
-            if (wordFields[i].getText().charAt(0) == word.charAt(i)) {
-                continue;
-            } else {
+            if (wordFields[i].getText().charAt(0) != word.charAt(i)) {
                 return false;
             }
         }
@@ -152,9 +200,11 @@ public class StartGameController {
     }
 
     void nextWord() {
-        // delete old word to another arraylist
-        dataAnswered.add(data.get(random));
-        data.remove(random);
+        // empty the input text field
+        input.setText("");
+        
+        // make buttonGetNewWord visible again
+        buttonGetNewWord.setVisible(true);
 
         // get a new word
         random = new Random().nextInt(data.size());
@@ -173,19 +223,9 @@ public class StartGameController {
         
         // initialize all word text field
         initializeWordTextField();
-
+        setHint();
     }
     
-    public void initializeWordTextField() {
-        for (int i = 0; i < 10; i++) {
-            if (i < letterSize) {
-                wordFields[i].setText("___");
-            } else {
-                wordFields[i].setText("");
-            }
-        }
-    }
-
     public void setHint(){
         String hintText = hintWord + ", " + String.valueOf(letterSize) + " letters";
         hint.setText(hintText);
@@ -194,6 +234,11 @@ public class StartGameController {
     public void setScore() {
         String showScore = "Score: " + String.valueOf(score);
         textScore.setText(showScore);
+    }
+
+    void deleteAnsweredWord() {
+        dataAnswered.add(data.get(random));
+        data.remove(random);
     }
 
     @FXML
@@ -210,12 +255,24 @@ public class StartGameController {
             }
             
             if (isFinished(word.length())) {
+                buttonGetNewWord.setVisible(false);
+                buttonHint.setVisible(false);
+                score++;
+                setScore();
+                hint.setText("You are correct!");
                 finishedState();
             }
         } else {
             life--;
             setImage();
+            
+            if (life == 0) {
+                saveUserScore();
+                
+            }
         }
+        
+        input.setText("");
     }
 
     @FXML
@@ -243,18 +300,21 @@ public class StartGameController {
             buttonHint.setVisible(false);
         }
     }
+    
+    void saveUserScore()  {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate now = LocalDate.now();
+        String userScore = "Date: " + dtf.format(now) + ", score: " + score;
+        
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("src/HighScoresList.txt", true));
 
-    public void setLetter(int index, String inputText) {
-        if (index == 1) tf1.setText(inputText);
-        else if (index == 2) tf2.setText(inputText);
-        else if (index == 3) tf3.setText(inputText);
-        else if (index == 4) tf4.setText(inputText);
-        else if (index == 5) tf5.setText(inputText);
-        else if (index == 6) tf6.setText(inputText);
-        else if (index == 7) tf7.setText(inputText);
-        else if (index == 8) tf8.setText(inputText);
-        else if (index == 9) tf9.setText(inputText);
-        else if (index == 10) tf10.setText(inputText);
+            writer.newLine();
+            writer.write(userScore);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setImage() {
@@ -280,11 +340,17 @@ public class StartGameController {
     }
     
     @FXML
-    void changeScene(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("StartGame.fxml"));
-        Stage window = (Stage)(((Node) event.getSource()).getScene().getWindow());
-        window.setTitle("Hangman");
-        window.setScene(new Scene(root, 800, 650));
-        window.show();
+    void getNewWord(ActionEvent event) throws IOException {
+        countHint = 0;
+        random = new Random().nextInt(data.size());
+        String wordHint = data.get(random);
+        split = wordHint.split(" ", 2);
+        word = split[0];
+        hintWord = split[1];
+        isAnswered = new boolean[11];
+        letterSize = word.length();
+
+        initializeWordTextField();
+        setHint();
     }
 }
