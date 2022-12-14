@@ -110,8 +110,8 @@ public class StartGameController {
     String hintWord = split[1];
     int life = 6;
     int letterSize = word.length();
-    boolean[] isAnswered = new boolean[11];
     int score = 0;
+    boolean[] isAnswered = new boolean[11];
 
     public void initialize() {
         initializeTextFieldArray();
@@ -154,7 +154,7 @@ public class StartGameController {
     void nextWord() {
         // delete old word to another arraylist
         dataAnswered.add(data.get(random));
-        data.remove(random);
+        data.remove(data.get(random));
 
         // get a new word
         random = new Random().nextInt(data.size());
@@ -162,6 +162,9 @@ public class StartGameController {
         split = wordHint.split(" ", 2);
         word = split[0];
         hintWord = split[1];
+        letterSize = word.length();
+        score++;
+        Arrays.fill(isAnswered, false);
 
         // reset hint count and make hint button visible
         countHint = 0;
@@ -173,6 +176,8 @@ public class StartGameController {
         
         // initialize all word text field
         initializeWordTextField();
+        setHint();
+        setScore();
 
     }
     
