@@ -178,7 +178,6 @@ public class StartGameController {
         initializeWordTextField();
         setHint();
         setScore();
-
     }
     
     public void initializeWordTextField() {
@@ -216,11 +215,15 @@ public class StartGameController {
             
             if (isFinished(word.length())) {
                 finishedState();
+                buttonHint.setVisible(false);
             }
         } else {
             life--;
             setImage();
         }
+
+        input.selectAll();
+        input.requestFocus();
     }
 
     @FXML
@@ -239,6 +242,10 @@ public class StartGameController {
 
             break;
             }
+        }
+        if (isFinished(word.length())) {
+            finishedState();
+            buttonHint.setVisible(false);
         }
     }
 
