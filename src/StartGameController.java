@@ -120,14 +120,11 @@ public class StartGameController {
         )
     );
 
-    int countHint, life, letterSize, score;
-    int random = new Random().nextInt(data.size());
-    String wordHint = data.get(random);
-    String[] split = wordHint.split(" ", 2);
-    String word = split[0];
-    String hintWord = split[1];
-    int life = 6;
-    int letterSize = word.length();
+    int countHint, life, letterSize, score, random;
+
+    String wordHint, word, hintWord;
+    String[] split = new String[2];
+
     boolean[] isAnswered = new boolean[11];
 
     public void initialize() {
@@ -267,15 +264,37 @@ public class StartGameController {
             }
         } else {
             life--;
-            setImage();
+            setImage(life);
             
             if (life == 0) {
                 saveUserScore();
-                
+                gameOver();
             }
         }
         
         input.setText("");
+    }
+
+    private void gameOver() {
+        hint.setText("The word is: " + word);
+        buttonCheck.setText("NEW");
+        buttonCheck.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    Parent root = FXMLLoader.load(getClass().getResource("StartGame.fxml"));
+                    Stage window = (Stage)(((Node) event.getSource()).getScene().getWindow());
+                    window.setTitle("Hangman");
+                    window.setScene(new Scene(root, 800, 650));
+                    window.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        
+        buttonGetNewWord.setVisible(false);
+        buttonHint.setVisible(false);
     }
 
     @FXML
@@ -320,17 +339,8 @@ public class StartGameController {
         }
     }
 
-    public void setImage() {
-        if (life == 6) img.setImage(imageLife6);
-        else if (life == 5) img.setImage(imageLife5);
-        else if (life == 4) img.setImage(imageLife4);
-        else if (life == 3) img.setImage(imageLife3);
-        else if (life == 2) img.setImage(imageLife2);
-        else if (life == 1) img.setImage(imageLife1);
-        else if (life == 0) {
-            img.setImage(imageLife0);
-            hint.setText("The word is: " + word);
-        }
+    public void setImage(int life) {
+        img.setImage(imageLife.get(life));
     }
 
     @FXML
