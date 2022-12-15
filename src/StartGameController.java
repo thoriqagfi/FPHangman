@@ -324,7 +324,7 @@ public class StartGameController {
         String userScore = "Date: " + dtf.format(now) + ", score: " + score;
         
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("src/HighScoresList.txt", true));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("./src/HighScoresList.txt", true));
 
             writer.newLine();
             writer.write(userScore);

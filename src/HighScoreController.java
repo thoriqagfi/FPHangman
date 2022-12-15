@@ -23,7 +23,7 @@ public class HighScoreController {
 
     void showHighScoreList() {
         try {
-            File txt = new File("src/HighScoresList.txt");
+            File txt = new File("./src/HighScoresList.txt");
             try (Scanner myReader = new Scanner(txt)) {
                 while (myReader.hasNextLine()) {
                     String data = myReader.nextLine();
