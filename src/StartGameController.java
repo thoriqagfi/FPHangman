@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class StartGameController {
@@ -33,6 +34,8 @@ public class StartGameController {
     @FXML
     private TextField textScore;
     @FXML
+    private HBox wordHBox;
+    @FXML
     private Button buttonCheck;
     @FXML
     private TextField hint;
@@ -41,31 +44,11 @@ public class StartGameController {
     @FXML
     private TextField input;
     @FXML
-    private TextField tf1;
-    @FXML
-    private TextField tf2;
-    @FXML
-    private TextField tf3;
-    @FXML
-    private TextField tf4;
-    @FXML
-    private TextField tf5;
-    @FXML
-    private TextField tf6;
-    @FXML
-    private TextField tf7;
-    @FXML
-    private TextField tf8;
-    @FXML
-    private TextField tf9;
-    @FXML
-    private TextField tf10;
-    @FXML
     private Button buttonHint;
     @FXML
     private Button buttonGetNewWord;
     
-    private TextField[] wordFields;
+    ArrayList<TextField> wordHBoxField = new ArrayList<TextField>();
     
     ArrayList<Image> imageLife = new ArrayList<Image>(
         Arrays.asList(
@@ -129,20 +112,11 @@ public class StartGameController {
 
     public void initialize() {
         initializeVariable();
-        initializeTextFieldArray();
         initializeWordTextField();
         setHint();
         setScore();
     }
 
-    void initializeTextFieldArray() {
-        wordFields = new TextField[] {
-            tf1, tf2, tf3, tf4,
-            tf5, tf6, tf7, tf8,
-            tf9, tf10
-        };
-    }
-    
     void initializeVariable() {
         // fetch new word
         random = new Random().nextInt(data.size());
@@ -168,18 +142,22 @@ public class StartGameController {
     }
 
     public void initializeWordTextField() {
-        for (int i = 0; i < 10; i++) {
-            if (i < letterSize) {
-                wordFields[i].setText("___");
-            } else {
-                wordFields[i].setText("");
-            }
+        // clear HBox and wordHBox field
+        wordHBox.getChildren().clear();
+        wordHBoxField.clear();
+
+        // create new TextField for every letter in word
+        for (int i = 0; i < word.length(); i++) {
+            wordHBoxField.add(new WordTextField("___"));
         }
+        
+        // add all the textField to the HBox
+        wordHBox.getChildren().addAll(wordHBoxField);
     }
 
     public boolean isFinished(int wordLength) {
         for (int i = 0; i < wordLength; i++) {
-            if (wordFields[i].getText().charAt(0) != word.charAt(i)) {
+            if (wordHBoxField.get(i).getText().charAt(0) != word.charAt(i)) {
                 return false;
             }
         }
@@ -210,7 +188,6 @@ public class StartGameController {
         word = split[0];
         hintWord = split[1];
         letterSize = word.length();
-        score++;
         Arrays.fill(isAnswered, false);
 
         // reset hint count and make hint button visible
@@ -221,6 +198,12 @@ public class StartGameController {
         buttonCheck.setText("CHECK");
         buttonCheck.setOnAction(event -> CheckInput(event));
         
+        // set hint again
+        setHint();
+
+        // make button get new word visible
+        buttonGetNewWord.setVisible(true);
+
         // initialize all word text field
         initializeWordTextField();
     }
@@ -248,19 +231,18 @@ public class StartGameController {
             for(int i = 0; i < letterSize; i++) {
                 char c = word.charAt(i);
                 if(String.valueOf(c).equals(inputText)) {
-                    wordFields[i].setText(inputText);
+                    wordHBoxField.get(i).setText(inputText);
                     isAnswered[i] = true;
                 }
             }
             
             if (isFinished(word.length())) {
-                buttonGetNewWord.setVisible(false);
-                buttonHint.setVisible(false);
                 score++;
                 setScore();
+                buttonGetNewWord.setVisible(false);
+                buttonHint.setVisible(false);
                 hint.setText("You are correct!");
                 finishedState();
-                buttonHint.setVisible(false);
             }
         } else {
             life--;
@@ -309,7 +291,7 @@ public class StartGameController {
                 for (int j = 0; j < letterSize; j++) {
                     char c = word.charAt(j);
                     if (hint_letter == c) {
-                        wordFields[j].setText(Character.toString(hint_letter));
+                        wordHBoxField.get(j).setText(Character.toString(hint_letter));
                         isAnswered[j] = true;
                     }
                 }

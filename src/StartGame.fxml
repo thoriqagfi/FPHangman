@@ -74,19 +74,7 @@
                   <Font size="16.0" />
                </font>
             </TextField>
-            <HBox alignment="CENTER" prefHeight="63.0" prefWidth="554.0" spacing="10.0" GridPane.rowIndex="1">
-               <children>
-                  <TextField fx:id="tf1" alignment="CENTER" editable="false" focusTraversable="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: rgba(0,0,0,0);" text="___" />
-                  <TextField fx:id="tf2" alignment="CENTER" editable="false" focusTraversable="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: rgba(0,0,0,0);" text="___" />
-                  <TextField fx:id="tf3" alignment="CENTER" editable="false" focusTraversable="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: rgba(0,0,0,0);" text="___" />
-                  <TextField fx:id="tf4" alignment="CENTER" editable="false" focusTraversable="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: rgba(0,0,0,0);" text="___" />
-                  <TextField fx:id="tf5" alignment="CENTER" editable="false" focusTraversable="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: rgba(0,0,0,0);" text="___" />
-                  <TextField fx:id="tf6" alignment="CENTER" editable="false" focusTraversable="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: rgba(0,0,0,0);" text="___" />
-                  <TextField fx:id="tf7" alignment="CENTER" editable="false" focusTraversable="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: rgba(0,0,0,0);" text="___" />
-                  <TextField fx:id="tf8" alignment="CENTER" editable="false" focusTraversable="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: rgba(0,0,0,0);" text="___" />
-                  <TextField fx:id="tf9" alignment="CENTER" editable="false" focusTraversable="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: rgba(0,0,0,0);" text="___" />
-                  <TextField fx:id="tf10" alignment="CENTER" editable="false" focusTraversable="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: rgba(0,0,0,0);" text="___" />
-               </children>
+            <HBox fx:id="wordHBox" alignment="CENTER" fillHeight="false" prefHeight="62.0" prefWidth="782.0" spacing="10.0" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
