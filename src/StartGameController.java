@@ -183,7 +183,6 @@ public class StartGameController {
                 return false;
             }
         }
-        
         return true;
     }
 
@@ -210,8 +209,10 @@ public class StartGameController {
         word = split[0];
         hintWord = split[1];
         letterSize = word.length();
-        score++;
+        // score++;
         Arrays.fill(isAnswered, false);
+
+        setHint();
 
         // reset hint count and make hint button visible
         countHint = 0;
