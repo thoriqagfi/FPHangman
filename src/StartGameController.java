@@ -90,6 +90,10 @@ public class StartGameController {
             "BUS TRANSPORT",
             "PLANE TRANSPORT",
             "BICYCLE TRANSPORT",
+            "SWITZERLAND COUNTRY",
+            "AFGHANISTAN COUNTRY",
+            "TURKMENISTAN COUNTRY",
+            "LIECHTENSTEIN CONUTRY",
             "INDONESIA COUNTRY",
             "AUSTRALIA COUNTRY",
             "JAPAN COUNTRY",
@@ -99,7 +103,8 @@ public class StartGameController {
             "FRANCE COUNTRY",
             "GERMANY COUNTRY",
             "ITALY COUNTRY",
-            "SPAIN COUNTRY"
+            "SPAIN COUNTRY",
+            "NETHERLANDS COUNTRY"
         )
     );
 
@@ -149,7 +154,7 @@ public class StartGameController {
         // create new TextField for every letter in word
         for (int i = 0; i < word.length(); i++) {
             wordHBoxField.add(new WordTextField("___"));
-        }
+            }
         
         // add all the textField to the HBox
         wordHBox.getChildren().addAll(wordHBoxField);
@@ -238,10 +243,10 @@ public class StartGameController {
             }
             
             if (isFinished(word.length())) {
-                score++;
-                setScore();
                 buttonGetNewWord.setVisible(false);
                 buttonHint.setVisible(false);
+                score++;
+                setScore();
                 hint.setText("You are correct!");
                 finishedState();
             }
@@ -345,6 +350,7 @@ public class StartGameController {
     @FXML
     void getNewWord(ActionEvent event) throws IOException {
         countHint = 0;
+        buttonHint.setVisible(true);
         random = new Random().nextInt(data.size());
         String wordHint = data.get(random);
         split = wordHint.split(" ", 2);
