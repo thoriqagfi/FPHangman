@@ -74,10 +74,21 @@ public class StartGameController {
             "LEOPARD ANIMAL",
             "BICYCLE TRANSPORT",
             "SALMON FISH",
+            "CATFISH FISH",
+            "GOLDFISH FISH",
+            "CLOWNFISH FISH",
+            "BUTTERFLYFISH FISH",
+            "SARDINE FISH",
+            "DOLPHIN FISH",
+            "TUNA FISH",
+            "KOI FISH",
+            "PIRANHA FISH",
+            "SHARK FISH",
             "SPARROW BIRD",
             "PARROTS BIRD",
             "EAGLE BIRD",
             "TRAIN TRANSPORT",
+            "ARCHITECT PROFESSION",
             "SHIP TRANSPORT",
             "ENGINEER PROFESSION",
             "BANKER PROFESSION",
@@ -86,6 +97,14 @@ public class StartGameController {
             "HOCKEY SPORT",
             "TENNIS SPORT",
             "SWIMMING SPORT",
+            "AUTHOR PROFESSION",
+            "CHEF PROFESSION",
+            "DESIGNER PROFESSION",
+            "jUDGE PROFESSION",
+            "POLICE PROFESSION",
+            "LAWYER PROFESSION",
+            "SCIENTIST PROFESSION",
+            "ENTERPRENEUR PROFESSION",
             "CAR TRANSPORT",
             "BUS TRANSPORT",
             "PLANE TRANSPORT",
@@ -104,7 +123,8 @@ public class StartGameController {
             "GERMANY COUNTRY",
             "ITALY COUNTRY",
             "SPAIN COUNTRY",
-            "NETHERLANDS COUNTRY"
+            "NETHERLANDS COUNTRY",
+            "DETECTIVE PROFESSION"
         )
     );
 
@@ -306,8 +326,12 @@ public class StartGameController {
             }
         }
         if (isFinished(word.length())) {
-            finishedState();
+            buttonGetNewWord.setVisible(false);
             buttonHint.setVisible(false);
+            score++;
+            setScore();
+            hint.setText("You are correct!");
+            finishedState();
         }
     }
 
